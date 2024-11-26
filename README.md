@@ -1,4 +1,7 @@
+
 # firefox-sync
+ 
+⚠️ - This is a fork for just arm64 builds.
 
 The purpose of this repository is to provide a docker-compose that can be used to self host what otherwise Firefox sync would send to Mozilla's servers.
 
