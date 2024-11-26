@@ -17,7 +17,7 @@ jobs:
       REPOSITORY_SITE: ghcr.io
       REPOSITORY_FULL_NAME: ${{ github.repository }}
       SERVICE_NAME: syncstorage-rs
-      SERVICE_REPOSITORY: https://github.com/mozilla-services/syncstorage-rs
+      SERVICE_REPOSITORY: https://github.com/ghagl/syncstorage-rs
       CHANGELOG_PATH: CHANGELOG.md
       IMAGE_EXPIRY: 600000 # in seconds, slightly less than a week
       IMAGE_PREFIX_TAGS: mysql-
@@ -103,7 +103,7 @@ jobs:
       - name: Build and push service Docker image
         if: steps.check_tag_exists.outputs.tag_exists == 'false' || steps.check_image_age.outputs.image_old == 'true'
         run: |
-          docker build --build-arg DATABASE_BACKEND=${{ env.DATABASE_BACKEND }} \
+          docker buildx build --platform linux/amd64,linux/arm64 --build-arg DATABASE_BACKEND=${{ env.DATABASE_BACKEND }} \
             -t ${{ env.REPOSITORY_SITE }}/${{ env.REPOSITORY_FULL_NAME }}:${{ env.SERVICE_NAME }}-${{ env.IMAGE_PREFIX_TAGS }}${NOW}-${{ steps.get_latest_tag.outputs.tag }} \
             -t ${{ env.REPOSITORY_SITE }}/${{ env.REPOSITORY_FULL_NAME }}:${{ env.SERVICE_NAME }}-${{ env.IMAGE_PREFIX_TAGS }}${{ steps.get_latest_tag.outputs.tag }} \
             -t ${{ env.REPOSITORY_SITE }}/${{ env.REPOSITORY_FULL_NAME }}:${{ env.SERVICE_NAME }}-${{ env.IMAGE_PREFIX_TAGS }}latest \
