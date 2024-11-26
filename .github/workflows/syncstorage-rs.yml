@@ -98,7 +98,7 @@ jobs:
         if: steps.check_tag_exists.outputs.tag_exists == 'false' || steps.check_image_age.outputs.image_old == 'true'
         run: |
           mkdir mozilla-services
-          git clone --depth 1 --branch ${{ steps.get_latest_tag.outputs.tag }} "${{ env.SERVICE_REPOSITORY }}" mozilla-services/"${{ env.SERVICE_NAME }}"
+          git clone --depth 1 --branch master "${{ env.SERVICE_REPOSITORY }}" mozilla-services/"${{ env.SERVICE_NAME }}"
 
       - name: Build and push service Docker image
         if: steps.check_tag_exists.outputs.tag_exists == 'false' || steps.check_image_age.outputs.image_old == 'true'
