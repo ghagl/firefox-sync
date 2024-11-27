@@ -131,5 +131,5 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           name: ${{ env.SERVICE_NAME }}
-          tag: ${{ env.SERVICE_NAME }}-${{ env.IMAGE_PREFIX_TAGS }}${{ env.NOW }}-${{ steps.get_latest_tag.outputs.tag }}
+          tag: ${{ env.SERVICE_NAME }}-${{ env.IMAGE_PREFIX_TAGS }}${{ env.NOW }}-master
           bodyFile: ./mozilla-services/${{ env.SERVICE_NAME }}/${{ env.CHANGELOG_PATH }}
